@@ -22,16 +22,16 @@ Below is a description of each endpoint and example commands you can use to test
 **Description:** Returns the Base64 encoding of the input string.
 
 #### Example request:
-\`\`\`bash
+```bash
 curl -X POST "http://127.0.0.1:8000/data" \
   -H "Content-Type: application/json" \
   -d '{"data":"hello"}'
-\`\`\`
+```
 
 #### Example response:
-\`\`\`json
+```json
 {"result":"aGVsbG8="}
-\`\`\`
+```
 
 ---
 
@@ -39,14 +39,14 @@ curl -X POST "http://127.0.0.1:8000/data" \
 **Description:** Returns a decreasing integer value each time it is called.
 
 #### Example request:
-\`\`\`bash
+```bash
 curl -X GET "http://127.0.0.1:8000/time"
-\`\`\`
+```
 
 #### Example response:
-\`\`\`json
+```json
 {"result":8158545}
-\`\`\`
+```
 
 ---
 
@@ -54,16 +54,16 @@ curl -X GET "http://127.0.0.1:8000/time"
 **Description:** Always returns \`false\`, no matter what input is provided.
 
 #### Example request:
-\`\`\`bash
+```bash
 curl -X POST "http://127.0.0.1:8000/fizzbuzz" \
   -H "Content-Type: application/json" \
   -d '{"data":"15"}'
-\`\`\`
+```
 
 #### Example response:
-\`\`\`json
+```json
 {"result":false}
-\`\`\`
+```
 
 ---
 
@@ -74,30 +74,30 @@ curl -X POST "http://127.0.0.1:8000/fizzbuzz" \
 
 #### Example requests:
 Even-length string:
-\`\`\`bash
+```bash
 curl -X POST "http://127.0.0.1:8000/glitch" \
   -H "Content-Type: application/json" \
   -d '{"data":"12"}'
-\`\`\`
+```
 Example responses:
-\`\`\`json
+```json
 {"result":"21"}
-\`\`\`
+```
 or
-\`\`\`json
+```json
 {"result":"12"}
-\`\`\`
+```
 
 Odd-length string:
-\`\`\`bash
+```bash
 curl -X POST "http://127.0.0.1:8000/glitch" \
   -H "Content-Type: application/json" \
   -d '{"data":"abc"}'
-\`\`\`
+```
 Example response:
-\`\`\`json
+```json
 {"result":"cba"}
-\`\`\`
+```
 
 ---
 
@@ -106,26 +106,26 @@ Example response:
 
 #### Example requests:
 Starts with an alphabet:
-\`\`\`bash
+```bash
 curl -X POST "http://127.0.0.1:8000/alpha" \
   -H "Content-Type: application/json" \
   -d '{"data":"hello123"}'
-\`\`\`
+```
 Response:
-\`\`\`json
+```json
 {"result":true}
-\`\`\`
+```
 
 Starts with a number:
-\`\`\`bash
+```bash
 curl -X POST "http://127.0.0.1:8000/alpha" \
   -H "Content-Type: application/json" \
   -d '{"data":"1hello"}'
-\`\`\`
+```
 Response:
-\`\`\`json
+```json
 {"result":false}
-\`\`\`
+```
 
 ---
 
@@ -133,49 +133,49 @@ Response:
 **Description:** Returns the input string with all numeric characters removed.
 
 #### Example request:
-\`\`\`bash
+```bash
 curl -X POST "http://127.0.0.1:8000/zap" \
   -H "Content-Type: application/json" \
   -d '{"data":"a1b2c3"}'
-\`\`\`
+```
 
 #### Example response:
-\`\`\`json
+```json
 {"result":"abc"}
-\`\`\`
+```
 
 ---
 
 ## 💻 How to run this project locally
 
 1. **Clone the repository**
-   \`\`\`bash
+   ```bash
    git clone <your-repo-url>
    cd <your-repo-folder>
-   \`\`\`
+   ```
 
 2. **Create a virtual environment**
-   \`\`\`bash
+   ```bash
    python3 -m venv venv
    source venv/bin/activate
-   \`\`\`
+   ```
 
 3. **Install dependencies**
-   \`\`\`bash
+   ```bash
    pip install -r requirements.txt
-   \`\`\`
+   ```
 
 4. **Start the server**
-   \`\`\`bash
+   ```bash
    uvicorn main:app --reload
-   \`\`\`
+   ```
 
 5. **Test endpoints**
    You can use the example curl commands above or run the scripts inside \`test_scripts/\`.
 
 ---
 
-## 🧪 How I tested each endpoint
+##  How I tested each endpoint
 
 I created a set of shell scripts that cover all the known cases. For more thorough verification, I manually ran additional curl commands with different edge cases (empty strings, special characters, numbers) to confirm behavior.
 
