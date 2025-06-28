@@ -50,21 +50,41 @@ curl -X GET "http://127.0.0.1:8000/time"
 
 ---
 
-### 3️ /fizzbuzz
-**Description:** Always returns \`false\`, no matter what input is provided.
+### 3️⃣ /fizzbuzz
 
-#### Example request:
+**Description:**  
+Receives `data` as a **JSON string representing an array**.
+
+- If the parsed array has **even length**, returns the array itself.
+- If the array has **odd length** or the input is not a valid JSON array string, returns `false`.
+
+#### Example requests
+
+**Even-length array (returns the array):**
+
 ```bash
 curl -X POST "http://127.0.0.1:8000/fizzbuzz" \
   -H "Content-Type: application/json" \
-  -d '{"data":"15"}'
+  -d '{"data":"[\"Fizz\",\"Buzz\"]"}'
+
+
+#### Example response:
+```json
+{"result":["Fizz","Buzz"]}
 ```
+
+**Odd-length array (returns the array):**
+
+```bash
+curl -X POST "http://127.0.0.1:8000/fizzbuzz" \
+  -H "Content-Type: application/json" \
+  -d '{"data":"[\"Fizz\"]"}'
+
 
 #### Example response:
 ```json
 {"result":false}
 ```
-
 ---
 
 ### 4️ /glitch

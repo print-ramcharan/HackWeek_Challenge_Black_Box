@@ -4,7 +4,7 @@ from typing import Optional
 import base64
 import random
 import string
-
+import json
 app = FastAPI()
 
 # Shared countdown state
@@ -56,10 +56,28 @@ async def glitch_endpoint(item: DataModel):
     else:
         return {"result": item.data[::-1]}
 
-# /fizzbuzz
 @app.post("/fizzbuzz")
-async def fizzbuzz_endpoint():
+async def fizzbuzz_endpoint(item: DataModel):
+    # If data is a string, try parsing it as JSON
+    if isinstance(item.data, str):
+        try:
+            parsed = json.loads(item.data)
+            if isinstance(parsed, list):
+                if len(parsed) % 2 == 0:
+                    return {"result": parsed}
+                else:
+                    return {"result": False}
+        except json.JSONDecodeError:
+            return {"result": False}
+    # If data is already a list
+    if isinstance(item.data, list):
+        if len(item.data) % 2 == 0:
+            return {"result": item.data}
+        else:
+            return {"result": False}
+    # Otherwise
     return {"result": False}
+
 
 # /time
 @app.get("/time")
