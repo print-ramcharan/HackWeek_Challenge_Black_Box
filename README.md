@@ -150,8 +150,8 @@ curl -X POST "http://127.0.0.1:8000/zap" \
 
 1. **Clone the repository**
    ```bash
-   git clone <your-repo-url>
-   cd <your-repo-folder>
+   git clone https://github.com/print-ramcharan/HackWeek_Challenge_Black_Box
+   cd black_box
    ```
 
 2. **Create a virtual environment**
